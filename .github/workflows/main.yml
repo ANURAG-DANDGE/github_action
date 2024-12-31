@@ -21,6 +21,7 @@ jobs:
             chmod 600 /tmp/ssh_key
         - name: Connect to End user
           run: |
-            ssh -o "StrictHostKeyChecking=no"  -i /tmp/ssh_key ubuntu@44.204.153.30
+            ssh -o "StrictHostKeyChecking=no"  -i /tmp/ssh_key ubuntu@44.204.153.30 "
             kubectl delete deployment my-deployment
-            kubectl apply -f /home/ubuntu/my-deployment.yml
+            kubectl apply -f /home/ubuntu/my_deployment.yml
+            "
