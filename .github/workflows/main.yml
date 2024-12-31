@@ -12,6 +12,6 @@ jobs:
         - name: Build and Push Docker Image
           run: |
             docker build -t myimage .
-            docker tag myimage username/myimage
+            docker tag myimage anurag0454/myimage
             echo "${{secrets.DOCKERHUB_PASSWORD}}" | docker login -u "${{secrets.DOCKERHUB_USERNAME}}" --password-stdin
-            docker push username/myimage
+            docker push anurag0454/myimage
