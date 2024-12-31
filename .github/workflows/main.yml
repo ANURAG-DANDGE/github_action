@@ -15,3 +15,12 @@ jobs:
             docker tag myimage anurag0454/myimage
             echo "${{secrets.DOCKERHUB_PASSWORD}}" | docker login -u "${{secrets.DOCKERHUB_USERNAME}}" --password-stdin
             docker push anurag0454/myimage
+        - name: Setup SSH key
+          run: |
+            echo "${{secrets.EC2_PRIVATE_KEY}}" > /tmp/ssh_key
+            chmod 600 /tmp/ssh_key
+        - name: Connect to End user
+          run: |
+            ssh -o "StrictHostKeyChecking=no"  -i /tmp/ssh_key ubuntu@44.204.153.30
+            kubectl delete deployment my-deployment
+            kubectl apply -f /home/ubuntu/my-deployment.yml
